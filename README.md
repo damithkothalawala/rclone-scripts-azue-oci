@@ -103,7 +103,7 @@ basically I have given azure and oci as the names for the 2 CSP configurations. 
 
 ### 3. Creating Migration Scripts
 
-#### Automate OCI Bucket Creation
+#### 3.1 Automate OCI Bucket Creation
 
 You need to create buckets on OCI Side before doing the migration. So what I have done is to create a script to list containers inside given set of azure storage account and create those on oci oss.
 
@@ -137,7 +137,7 @@ done
 
 I have tested above to create 196000+ buckets and it took around 2 days. This is thanks to the az cli / api list limits "single listing call is 5000."
 
-#### Automate Migration for Larger Objects
+#### 3.2 Automate Migration for Larger Objects
 
 This is simple but please make sure to have a `screen` session to run script
 
