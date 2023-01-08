@@ -101,6 +101,37 @@ region = ap-mumbai-1
 ```
 basically I have given azure and oci as the names for the 2 CSP configurations. You may add any blocks as you may need.
 
+#### Creating Migration Scripts
 
+You need to create buckets on OCI Side before doing the migration. So what I have done is to create a script to list containers inside given set of azure storage account and create those on oci oss.
 
+Please remember that OCI do not have storage account concept and you cannot have duplicate name for buckets even inside oci compartments. So you will have to handle that issue with prefixing storage account name to the oci side bucket. (Need only if you have 2 containers with same name amoung multiple storage accounts. For ex production and testing storage accounts can have a container named config)
+
+```bash
+#!/bin/bash
+#set path for az / oci binary
+export PATH=$PATH:/root/bin/
+# To Get a list of storage accounts execute following command 
+#storage_accounts=$(az storage account list --output tsv --query '[].name')
+
+#Now select required storage accounts 
+storage_accounts="production dev testing"
+
+#Provide OCI Compartment to Create new buckets
+oci_compartment_id='ocid1.compartment.oc1..aaaaaaaahnnivTRUNCATeD'
+
+# Iterate through each storage account
+for storage_account in $storage_accounts; do
+  # Get a list of all containers in the storage account
+  containers=$(az storage container list --account-name $storage_account --num-results "*" --output tsv --query '[].name')
+
+  # Iterate through each container
+  for container in $containers; do
+    #create oci bucket as per the template [Storage_Account_Name]-[Container_Name]
+    oci os bucket create --name "$storage_account-$container"  --compartment-id $oci_compartment_id 2>&1 >> oci_os_creation.log
+  done
+done
+```
+
+I have tested above to create 196000+ buckets and it took around 2 days. This is thanks to the az cli / api list limits "single listing call is 5000."
 
