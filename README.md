@@ -5,8 +5,19 @@ This repo contents some useful scripts to migrate data from Azure Blob to Oracle
 
 ## Table of Contents 
 
-1. Create OCI Object Storage Service buckets as per provieded storage accounts.
-2. RClone Based Migration Scripts
+- [rclone-scripts-azue-oci](#rclone-scripts-azue-oci)
+  * [Let's Do This](#let-s-do-this)
+    + [Linux System Changes Required (I used Oracle Linux and Ubuntu and providing examples for ubuntu)](#linux-system-changes-required--i-used-oracle-linux-and-ubuntu-and-providing-examples-for-ubuntu-)
+    + [Setting up Rclone](#setting-up-rclone)
+    + [Install Azure CLI](#install-azure-cli)
+    + [Install OCI CLI](#install-oci-cli)
+  * [Configuration](#configuration)
+    + [1. Configure az cli and oci cli](#1-configure-az-cli-and-oci-cli)
+    + [2. Configure RClone](#2-configure-rclone)
+    + [3. Creating Migration Scripts](#3-creating-migration-scripts)
+      - [3.1 Automate OCI Bucket Creation](#31-automate-oci-bucket-creation)
+      - [3.2 Automate Migration for Larger Objects](#32-automate-migration-for-larger-objects)
+        * [Example Usage](#example-usage)
 
 ## What you will need ?
 
