@@ -15,3 +15,16 @@ What you will need ?
 3. oci cli
 4. rclone
 
+
+Linux System Changes Required
+
+You will must have following limits on /etc/security/limits.conf
+
+```
+*          soft    nproc     4096
+root       soft    nproc     unlimited
+root soft     nproc          65000    
+root hard     nproc          65000   
+root hard     nofile         65000
+```
+
