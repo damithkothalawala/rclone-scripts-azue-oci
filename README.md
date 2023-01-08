@@ -1,4 +1,4 @@
-# rclone-scripts-azue-oci
+# Moving Azure Blobs to Oracle Cloud Infrastructure Object Storage Service using RClone (Azure Blob to OCI OSS)
 rclone scripts to migrate content from azure to oci
 
 This repo contents some useful scripts to migrate data from Azure Blob to Oracle Cloud Infrastructure Object Storage Service (OCI-OSS)
