@@ -101,7 +101,9 @@ region = ap-mumbai-1
 ```
 basically I have given azure and oci as the names for the 2 CSP configurations. You may add any blocks as you may need.
 
-#### Creating Migration Scripts
+### 3. Creating Migration Scripts
+
+#### Automate OCI Bucket Creation
 
 You need to create buckets on OCI Side before doing the migration. So what I have done is to create a script to list containers inside given set of azure storage account and create those on oci oss.
 
@@ -134,4 +136,26 @@ done
 ```
 
 I have tested above to create 196000+ buckets and it took around 2 days. This is thanks to the az cli / api list limits "single listing call is 5000."
+
+#### Automate Migration for Larger Objects
+
+This is simple but please make sure to have a `screen` session to run script
+
+follwing script designed to take az storage account container and oci oss buckets as command line arguments 
+
+
+```bash
+#!/bin/bash
+export PATH=$PATH:/root/bin/
+#azure to oci sync 
+export AZURE_STORAGE_ACCOUNT_NAME=$1
+time rclone --progress --stats-one-line --multi-thread-streams 10000 --multi-thread-cutoff 1Mi --multi-thread-streams 10000 --transfers 1000 --buffer-size 2048Mi --azureblob-chunk-size 100Mi --azureblob-list-chunk 5000 --max-stats-groups 5000 --oos-chunk-size 100Mi --oos-upload-concurrency 10000 copy azure:$2 oci:$3
+```
+
+##### Example Usage
+
+```bash
+#./azure_to_oci_sync.sh [azure_storage_account] [azure-container] [oci-bucket-name]
+./azure_to_oci_sync.sh production config-container production-config-container
+```
 
