@@ -78,7 +78,28 @@ oci setup config
 run following command to login to az cli and then do as per console instructions. command will exit upon the successful login. Or read following to setup instance principal https://www.ateam-oracle.com/post/calling-oci-cli-using-instance-principal to the instance (Only applicable if you are creating the instance on OCI and not valid for azure)
 
 
+### 2. Configure RClone
 
+RClone can be configured using following command but I am adding the required config for rclone v1.61.1 just to make your life easy
+
+```
+rclone config
+```
+
+make sure to have following alike config under the path "/root/.config/rclone/rclone.conf" (yes need root account)
+
+```vim
+[azure]
+type = azureblob
+env_auth = true
+
+[oci]
+type = oracleobjectstorage
+namespace = axdTRUNCATEDixb
+compartment = ocid1.compartment.oc1..aaaaaaaahnnivgp2mTRUNCATED6itp2cwmkhb7doa
+region = ap-mumbai-1
+```
+basically I have given azure and oci as the names for the 2 CSP configurations. You may add any blocks as you may need.
 
 
 
