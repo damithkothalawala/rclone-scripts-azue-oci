@@ -88,7 +88,7 @@ rclone config
 
 make sure to have following alike config under the path "/root/.config/rclone/rclone.conf" (yes need root account)
 
-```vim
+```rclone
 [azure]
 type = azureblob
 env_auth = true
