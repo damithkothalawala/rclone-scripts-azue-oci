@@ -50,10 +50,36 @@ Follwing Should be installed under root (sudo su - or sudo -i ) and please make 
 ```bash
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 ```
+and continue as per the installation instructions. Just press enter until the end if you are new to this or no need any customizations :-D
 
 ### Install OCI CLI
 
 ```bash
 bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)"
 ```
+and continue as per the installation instructions. Just press enter until the end if you are new to this or no need any customizations :-D
+
+## Configuration
+
+### 1. Configure az cli and oci cli
+
+run following command to login to az cli and then do as per console instructions. command will exit upon the successful login. 
+
+```
+az login
+```
+
+rul following command to setup oci cli
+
+```
+oci setup config
+```
+
+run following command to login to az cli and then do as per console instructions. command will exit upon the successful login. Or read following to setup instance principal https://www.ateam-oracle.com/post/calling-oci-cli-using-instance-principal to the instance (Only applicable if you are creating the instance on OCI and not valid for azure)
+
+
+
+
+
+
 
