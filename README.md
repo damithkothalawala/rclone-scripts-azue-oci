@@ -44,7 +44,7 @@ Also read following links as well
 
 https://project-sunbird.atlassian.net/browse/ED-462
 https://github.com/project-sunbird/sunbird-devops/discussions/3605
-(Yes I am originally doing this for sunbird 🦖 )
+(Yes I am originally doing this for sunbird)
 
 ### Setting up Rclone 
 
