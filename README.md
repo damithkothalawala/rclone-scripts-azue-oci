@@ -160,8 +160,7 @@ follwing script designed to take az storage account container and oci oss bucket
 export PATH=$PATH:/root/bin/
 #azure to oci sync 
 export AZURE_STORAGE_ACCOUNT_NAME=$1
-#remove -vv to prevent verbose output
-time rclone --progress --stats-one-line --multi-thread-streams 10000 --multi-thread-cutoff 1Mi --multi-thread-streams 10000 --transfers 5000 --buffer-size 2048Mi --azureblob-chunk-size 100Mi --azureblob-list-chunk 5000 --max-stats-groups 50000 --oos-chunk-size 100Mi --oos-upload-concurrency 50000 sync azure:$2 oci:$3
+/root/rclone -vvv --progress --stats-one-line --multi-thread-streams 8 --transfers 5000 --buffer-size 48Mi  --azureblob-list-chunk 5000 --max-stats-groups 10 --oos-chunk-size 100Mi --oos-upload-concurrency  10000 --retries 3 --checkers 32 --size-only sync azure:$2 oci:$3
 ```
 
 ##### Example Usage
